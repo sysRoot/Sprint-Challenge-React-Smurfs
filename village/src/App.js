@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, NavLink } from "react-router-dom";
 
 import "./App.scss";
 import SmurfForm from "./components/SmurfForm";
@@ -43,6 +43,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <nav>
+          <ul>
+          <li><NavLink to="/smurfs">Smurf List</NavLink></li>
+          <li><NavLink to="/add-smurf">Add Smurf</NavLink></li>
+          </ul>
+        </nav>
         <Route
           path="/add-smurf"
           render={props => (
