@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './App.css';
+import './App.scss';
 import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
 import axios from 'axios';
@@ -26,6 +26,7 @@ class App extends Component {
   }
   
   refreshCall = () => {
+    console.log(`am I being fired`)
     axios
     .get(`http://localhost:3333/smurfs`)
     .then(res => this.setState({ smurfs: res.data }))

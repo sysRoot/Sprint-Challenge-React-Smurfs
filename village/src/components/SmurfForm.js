@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import './SmurfForm.scss'
 
 class SmurfForm extends Component {
   constructor(props) {
@@ -20,7 +21,7 @@ class SmurfForm extends Component {
         age: this.state.age,
         height: this.state.height
       })
-      .then(res => this.props.refreshCall)
+      .then(res => this.props.refreshCall())
       .catch(err => console.log(err, `Refresh error, perhaps ajax post failed?`))
 
     this.setState({
