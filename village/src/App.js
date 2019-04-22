@@ -25,10 +25,17 @@ class App extends Component {
       .catch(err => console.log(err, `cDMount-time error, axios may have performed incorrectly`))
   }
   
+  refreshCall = () => {
+    axios
+    .get(`http://localhost:3333/smurfs`)
+    .then(res => this.setState({ smurfs: res.data }))
+    .catch(err => console.log(err, `Refresh error, axios may have performed incorrectly`))
+  }
+
   render() {
     return (
       <div className="App">
-        <SmurfForm />
+        <SmurfForm refreshCall={this.refreshCall} />
         <Smurfs smurfs={this.state.smurfs} />
       </div>
     );
