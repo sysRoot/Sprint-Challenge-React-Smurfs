@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
+import { Route } from "react-router-dom";
 
-import './App.scss';
-import SmurfForm from './components/SmurfForm';
-import Smurfs from './components/Smurfs';
-import axios from 'axios';
+import "./App.scss";
+import SmurfForm from "./components/SmurfForm";
+import Smurfs from "./components/Smurfs";
+import axios from "axios";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      smurfs: [],
+      smurfs: []
     };
   }
 
@@ -17,27 +18,41 @@ class App extends Component {
   // Notice what your map function is looping over and returning inside of Smurfs.
   // You'll need to make sure you have the right properties on state and pass them down to props.
 
-
   componentDidMount() {
     axios
       .get(`http://localhost:3333/smurfs`)
       .then(res => this.setState({ smurfs: res.data }))
-      .catch(err => console.log(err, `cDMount-time error, axios may have performed incorrectly`))
+      .catch(err =>
+        console.log(
+          err,
+          `cDMount-time error, axios may have performed incorrectly`
+        )
+      );
   }
-  
+
   refreshCall = () => {
-    console.log(`am I being fired`)
+    console.log(`am I being fired`);
     axios
-    .get(`http://localhost:3333/smurfs`)
-    .then(res => this.setState({ smurfs: res.data }))
-    .catch(err => console.log(err, `Refresh error, axios may have performed incorrectly`))
-  }
+      .get(`http://localhost:3333/smurfs`)
+      .then(res => this.setState({ smurfs: res.data }))
+      .catch(err =>
+        console.log(err, `Refresh error, axios may have performed incorrectly`)
+      );
+  };
 
   render() {
     return (
       <div className="App">
-        <SmurfForm refreshCall={this.refreshCall} />
-        <Smurfs smurfs={this.state.smurfs} />
+        <Route
+          path="/add-smurf"
+          render={props => (
+            <SmurfForm {...props} refreshCall={this.refreshCall} />
+          )}
+        />
+        <Route
+          path="/smurfs"
+          render={props => <Smurfs {...props} smurfs={this.state.smurfs} />}
+        />
       </div>
     );
   }
