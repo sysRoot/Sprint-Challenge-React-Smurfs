@@ -1,5 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import axios from 'axios';
+import FilledInput from '@material-ui/core/FilledInput';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Button from '@material-ui/core/Button';
+import Container from '@material-ui/core/Container'
+
 
 class SmurfForm extends Component {
   constructor(props) {
@@ -36,29 +42,25 @@ class SmurfForm extends Component {
 
   render() {
     return (
+      <Container>
       <div className="SmurfForm">
         <form onSubmit={this.addSmurf}>
-          <input
-            onChange={this.handleInputChange}
-            placeholder="name"
-            value={this.state.name}
-            name="name"
-          />
-          <input
-            onChange={this.handleInputChange}
-            placeholder="age"
-            value={this.state.age}
-            name="age"
-          />
-          <input
-            onChange={this.handleInputChange}
-            placeholder="height"
-            value={this.state.height}
-            name="height"
-          />
-          <button type="submit">Add to the village</button>
+        <FormControl variant="filled">
+        <InputLabel htmlFor="component-filled">Name</InputLabel>
+        <FilledInput id="component-filled" value={this.state.name} onChange={this.handleInputChange} />
+      </FormControl>
+      <FormControl variant="filled">
+        <InputLabel htmlFor="component-filled">Height</InputLabel>
+        <FilledInput id="component-filled" value={this.state.height} onChange={this.handleInputChange} />
+      </FormControl>
+      <FormControl variant="filled">
+        <InputLabel htmlFor="component-filled">Age</InputLabel>
+        <FilledInput id="component-filled" value={this.state.age} onChange={this.handleInputChange} />
+      </FormControl>
+          <Button variant="outlined" color="primary" type="submit">Add to the village</Button>
         </form>
       </div>
+      </Container>
     );
   }
 }
